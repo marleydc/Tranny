@@ -306,7 +306,7 @@ namespace Tranny
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string helpText = "Tranny Version 1.0.0.0\n\n";
+            string helpText = "Tranny Version 0.0.0.1\n\n";
             helpText += "Freeware - GNU license\n\n\n";
             helpText += "Released by Harley Clark\n\n\n";
             helpText += "Acknowledgements with thanks\n";
