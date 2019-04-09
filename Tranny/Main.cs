@@ -311,7 +311,7 @@ namespace Tranny
             helpText += "Released by Harley Clark\n\n\n";
             helpText += "Acknowledgements with thanks\n";
             helpText += "Based on Xtrans application released by Sergei Sokolov\n";
-            helpText += "Transformation Engine : Saxon (XSLT3.1)\n";
+            helpText += "Transformation Engine : Saxon (XSLT 3.1)\n";
             helpText += "Text Editor : ICSharpCode TextEditor\n\n";
             helpText += "With suggestions mail to  : marleydc@hotmail.com\n";
 
