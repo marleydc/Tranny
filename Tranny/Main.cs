@@ -278,7 +278,6 @@ namespace Tranny
             helpText += "Based on Xtrans application released by Sergei Sokolov\n";
             helpText += "Transformation Engine : Saxon (XSLT 3.1)\n";
             helpText += "Text Editor : ICSharpCode TextEditor\n\n";
-            helpText += "With suggestions mail to  : marleydc@hotmail.com\n";
 
             MessageBox.Show(helpText, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
