@@ -17,8 +17,6 @@ namespace Tranny
 {
     public partial class Main : Form
     {
-        private int _findStartPos = 0;
-        private string _findString = "";
         public Main()
         {
             InitializeComponent();
@@ -257,42 +255,9 @@ namespace Tranny
             else if (e.Control && e.KeyCode == Keys.S)
                 Save();
             else if (e.Control && e.KeyCode == Keys.F)
-                Find();
+                tranForm.Find();
             else if (e.KeyCode == Keys.F3)
-                FindNext();
-        }
-
-        private void Find()
-        {
-            DialogResult result = System.Windows.Forms.DialogResult.None;
-            result = InputBox.Show("Find",
-                "Searchstring",
-                "Value",
-                out _findString);
-
-            if (result == System.Windows.Forms.DialogResult.OK)
-                FindNext();
-        }
-
-        private void FindNext()
-        {
-            TranForm tranForm = (TranForm)this.ActiveMdiChild;
-            if (tranForm != null)
-            {
-                int lastPos = tranForm.TextEditor.ActiveTextAreaControl.TextArea.Caret.Offset + 2;
-                lastPos = tranForm.TextEditor.Text.IndexOf("\n", lastPos);
-
-                int pos = tranForm.TextEditor.Text.IndexOf(_findString, lastPos);
-                if (pos > 0)
-                {
-                    var lineNumber = tranForm.TextEditor.Text.Take(pos).Count(c => c == '\n') + 1;
-                    tranForm.TextEditor.ActiveTextAreaControl.JumpTo(lineNumber - 1);
-
-                    TextLocation start = new TextLocation(0, lineNumber-1);
-                    TextLocation end = new TextLocation(0, lineNumber);
-                    tranForm.TextEditor.ActiveTextAreaControl.SelectionManager.SetSelection(start, end);
-                }
-            }
+                tranForm.FindNext();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)

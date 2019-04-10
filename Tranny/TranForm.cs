@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.TextEditor;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Tranny
     {
         public ICSharpCode.TextEditor.TextEditorControl TextEditor { get; set; }
         public bool Dirty { get; set; }
+        private int _findStartPos = 0;
+        private string _findString = "";
 
         /*
         private void InitializeComponent()
@@ -67,6 +70,35 @@ namespace Tranny
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void Find()
+        {
+            DialogResult result = System.Windows.Forms.DialogResult.None;
+            result = InputBox.Show("Find",
+                "Searchstring",
+                "Value",
+                out _findString);
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+                FindNext(); 
+        }
+
+        public void FindNext()
+        {
+            int lastPos = this.TextEditor.ActiveTextAreaControl.TextArea.Caret.Offset + 2;
+            lastPos = this.TextEditor.Text.IndexOf("\n", lastPos);
+
+            int pos = this.TextEditor.Text.IndexOf(_findString, lastPos);
+            if (pos > 0)
+            {
+                var lineNumber = this.TextEditor.Text.Take(pos).Count(c => c == '\n') + 1;
+                this.TextEditor.ActiveTextAreaControl.JumpTo(lineNumber - 1);
+
+                TextLocation start = new TextLocation(0, lineNumber - 1);
+                TextLocation end = new TextLocation(0, lineNumber);
+                this.TextEditor.ActiveTextAreaControl.SelectionManager.SetSelection(start, end);
             }
         }
 
