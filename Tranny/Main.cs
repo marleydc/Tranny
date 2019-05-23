@@ -135,6 +135,12 @@ namespace Tranny
                     frmResult = new XMLForm();
                     frmResult.Owner = this;
                 }
+                else
+                {
+                    frmResult.TopMost = true;
+                    frmResult.BringToFront();
+                }
+
 
                 frmResult.MdiParent = this;
                 frmResult.TextEditor.Text = result;
